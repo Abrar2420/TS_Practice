@@ -256,55 +256,89 @@
 //     label: "action"
 // }
 
-//& coding task-11
+//& coding task-11 [Type Narrowing]
 
-function formatInput(a: number | string ) {
-    if(typeof a === "string") {
-        return a.toUpperCase()
-    }
-    if(typeof a === "number") {
-        return a * 10;
-    }
-}
-console.log(formatInput("Hello"));
+// function formatInput(a: number | string ) {
+//     if(typeof a === "string") {
+//         return a.toUpperCase()
+//     }
+//     if(typeof a === "number") {
+//         return a * 10;
+//     }
+// }
+// console.log(formatInput("Hello"));
 
-type Admin = {
-    name: string,
-    accessLevel: number
-}
+// type Admin = {
+//     name: string,
+//     accessLevel: number
+// }
 
-type Member = {
-    name: string,
-    email: string
-}
+// type Member = {
+//     name: string,
+//     email: string
+// }
 
-function describeUser(user: Admin | Member) {
-    if ("accessLevel" in user) {
-        // TS knows it's Admin here
-        console.log(`Admin: ${user.name}, Access Level: ${user.accessLevel}`);
-    } else {
-        // TS knows it's Member here
-        console.log(`Member: ${user.name}, Email: ${user.email}`);
-    }
-}
+// function describeUser(user: Admin | Member) {
+//     if ("accessLevel" in user) {
+//         // TS knows it's Admin here
+//         console.log(`Admin: ${user.name}, Access Level: ${user.accessLevel}`);
+//     } else {
+//         // TS knows it's Member here
+//         console.log(`Member: ${user.name}, Email: ${user.email}`);
+//     }
+// }
 
-describeUser({ name: "Alice", accessLevel: 3 });  
-describeUser({ name: "Bob", email: "bob@mail.com" }); 
-let user: Admin = {
-    name: "Alex",
-    accessLevel: 44
-}
+// describeUser({ name: "Alice", accessLevel: 3 });  
+// describeUser({ name: "Bob", email: "bob@mail.com" }); 
+// let user: Admin = {
+//     name: "Alex",
+//     accessLevel: 44
+// }
 
-function isAdmin(user: Admin | Member): user is Admin {
-    return (user as Admin).accessLevel !== undefined;
-}
+// function isAdmin(user: Admin | Member): user is Admin {
+//     return (user as Admin).accessLevel !== undefined;
+// }
 
-function callUser(user: Admin | Member) {
-    if (isAdmin(user)) {
-        console.log(`Admin: ${user.name}, Access Level: ${user.accessLevel}`); 
-    } else {
-        console.log(`Member: ${user.name}, Email: ${user.email}`); // ✅ TS knows email exists here
-    }
-}
+// function callUser(user: Admin | Member) {
+//     if (isAdmin(user)) {
+//         console.log(`Admin: ${user.name}, Access Level: ${user.accessLevel}`); 
+//     } else {
+//         console.log(`Member: ${user.name}, Email: ${user.email}`); // ✅ TS knows email exists here
+//     }
+// }
 
-callUser(user)
+// callUser(user)
+
+    //& coding task-12 [Type Narrowing]
+
+// abstract class Animal {
+//     constructor(protected name: string) {}
+//     abstract makeSound(): string;
+
+//     describe() {
+//         console.log(`${this.name} says: ${this.makeSound()}`);
+        
+//     }
+// }
+
+// class Dog extends Animal {
+//     constructor(name: string) {super(name)};
+//     makeSound(): string {
+//         return `Woof!`
+//     }
+// }
+
+// class Cat extends Animal {
+//     constructor(name: string) {super(name)};
+//     makeSound(): string {
+//         return `Meow!`
+//     }
+// }
+
+// const dog1 = new Dog("Hugo")
+// const cat1 = new Cat("Cokkie")
+// console.log(dog1.describe());
+// console.log(cat1.describe());
+
+// let dog2 = new Animal("Tommy")  // Cannot create an instance of an abstract class.
+
