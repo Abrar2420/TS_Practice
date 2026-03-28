@@ -1,4 +1,4 @@
-import {Student} from "./types"
+import type {Student} from "./types.js"
 
 
 export default function createStudent(student: Student) {
