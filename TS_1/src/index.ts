@@ -28,7 +28,7 @@
 // output in console: GAME
 // 'data' is of type 'unknown'. error in vscode
 
-//& coding task-4
+//& coding task-3
 
 // let city = "Dhaka"; // value is string TS infers type: string
 // let temperature = 34; // value is number TS infers type: number
@@ -88,7 +88,7 @@
 // }
 // printMovie(movie3)// output: Inception (2010) - Rating: 8.8
 
-//& coding task-5
+//& coding task-6
 
 // interface Vehicle {
 //     brand: string,
@@ -123,7 +123,7 @@
 
 // describeVehicle(Tesla_Model_Y)
 
-    //& coding task-5
+    //& coding task-7
     
     // type Status = "active" | "inactive" | "banned";
     
@@ -228,7 +228,7 @@
 //     status: "Shipped"
 // } //Type '"Shipped"' is not assignable to type 'OrderStatus'.
 
-//& coding task-9
+//& coding task-10
 
 // function getlast<T>(arr: T[]): T | undefined {
     //     return arr[arr.length - 1];
