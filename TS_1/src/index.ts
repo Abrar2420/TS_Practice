@@ -230,28 +230,81 @@
 
 //& coding task-9
 
-function getlast<T>(arr: T[]): T | undefined {
-    return arr[arr.length - 1];
-} 
+// function getlast<T>(arr: T[]): T | undefined {
+    //     return arr[arr.length - 1];
+    // } 
+    
+    // console.log(getlast([2, 4, 5, 6]));
 
-console.log(getlast([2, 4, 5, 6]));
+// function wrapInArray<T>(value: T): T[] | undefined {
+//     return [value]
+// }
 
-function wrapInArray<T>(value: T): T[] | undefined {
-    return [value]
+// console.log(wrapInArray(66));
+
+// interface Box<T> {
+//     content: T,
+//     label: string
+// }
+
+// let box1: Box<string> = {
+//     content: "Game",
+//     label: "action"
+// }
+// let box2: Box<number> = {
+//     content: 90,
+//     label: "action"
+// }
+
+//& coding task-11
+
+function formatInput(a: number | string ) {
+    if(typeof a === "string") {
+        return a.toUpperCase()
+    }
+    if(typeof a === "number") {
+        return a * 10;
+    }
+}
+console.log(formatInput("Hello"));
+
+type Admin = {
+    name: string,
+    accessLevel: number
 }
 
-console.log(wrapInArray(66));
-
-interface Box<T> {
-    content: T,
-    label: string
+type Member = {
+    name: string,
+    email: string
 }
 
-let box1: Box<string> = {
-    content: "Game",
-    label: "action"
+function describeUser(user: Admin | Member) {
+    if ("accessLevel" in user) {
+        // TS knows it's Admin here
+        console.log(`Admin: ${user.name}, Access Level: ${user.accessLevel}`);
+    } else {
+        // TS knows it's Member here
+        console.log(`Member: ${user.name}, Email: ${user.email}`);
+    }
 }
-let box2: Box<number> = {
-    content: 90,
-    label: "action"
+
+describeUser({ name: "Alice", accessLevel: 3 });  
+describeUser({ name: "Bob", email: "bob@mail.com" }); 
+let user: Admin = {
+    name: "Alex",
+    accessLevel: 44
 }
+
+function isAdmin(user: Admin | Member): user is Admin {
+    return (user as Admin).accessLevel !== undefined;
+}
+
+function callUser(user: Admin | Member) {
+    if (isAdmin(user)) {
+        console.log(`Admin: ${user.name}, Access Level: ${user.accessLevel}`); 
+    } else {
+        console.log(`Member: ${user.name}, Email: ${user.email}`); // ✅ TS knows email exists here
+    }
+}
+
+callUser(user)
