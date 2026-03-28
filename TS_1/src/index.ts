@@ -309,9 +309,9 @@
 
 // callUser(user)
 
-    //& coding task-12 [Type Narrowing]
-
-// abstract class Animal {
+    //& coding task-12 [Classes in TypeScript]
+    
+    // abstract class Animal {
 //     constructor(protected name: string) {}
 //     abstract makeSound(): string;
 
@@ -342,3 +342,44 @@
 
 // let dog2 = new Animal("Tommy")  // Cannot create an instance of an abstract class.
 
+
+        //& coding task-13 [Utility TYpes]
+
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    category: string;
+}
+
+function updateProduct(product: Product, update: Partial<Product>) {
+    return {...product, ...update}
+}
+
+let product: Product = {
+    name: "frypan",
+    id: 34,
+    price: 300,
+    description: "good",
+    category: "Kitchen"
+} 
+console.log(updateProduct(product, {name: "Pot", id: 56, price: 200}));
+
+type ProductPrview = Pick<Product, "name" | "price">
+type ProductWithoutId = Omit<Product, "id">
+type FrozenProduct = Readonly<Product>
+let readonlyProdct: FrozenProduct = {  name: "frypan",
+    id: 34,
+    price: 300,
+    description: "good",
+    category: "Kitchen"} 
+readonlyProdct.name = "plate";
+
+type PriceList = Record<string , number>
+
+let priceList: PriceList = {
+    mouse: 100,
+    mouse_pad: 60,
+    keyboard: 500,
+}
